@@ -1,0 +1,18 @@
+
+<div class="card">
+    <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
+    <div class="card-body">
+      <span class="badge bg-success" *ngIf="product.sale">SALE {{ product.discount }}% OFF</span>
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-text">Available ({{ product.stockStatus }})</p>
+      <p>
+        <strong>${{ product.price }}</strong>
+        <span class="text-muted text-decoration-line-through" *ngIf="product.originalPrice">
+          ${{ product.originalPrice }}
+        </span>
+      </p>
+      <button class="btn btn-warning">Add to Cart</button>
+      <button class="btn btn-secondary">Buy Now</button>
+    </div>
+  </div>
+  
