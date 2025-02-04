@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { CartService } from '../../Service/CartService/cart-service.service';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +9,9 @@ import { Component, signal } from '@angular/core';
 })
 export class HeaderComponent {
   title = signal("VeggieMart");
+  cartService = inject(CartService);
+  
+  cart = computed(() =>
+    this.cartService.cartItems().reduce((sum, item) => sum + item.quantity, 0)
+  );
 }

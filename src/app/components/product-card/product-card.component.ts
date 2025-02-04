@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { CartService } from '../../Service/CartService/cart-service.service';
 
 @Component({
   selector: 'app-product-card',
@@ -9,4 +10,12 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input() product: any;
+  @Output() productRemoved = new EventEmitter<number>(); 
+
+  private cartService = inject(CartService);
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
+    this.productRemoved.emit(this.product.id); 
+  }
 }
