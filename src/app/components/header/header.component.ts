@@ -1,17 +1,19 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { CartService } from '../../Service/CartService/cart-service.service';
-
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SearchService } from '../../Service/search-service.service';
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  title = signal("VeggieMart");
-  cartService = inject(CartService);
-  
-  cart = computed(() =>
-    this.cartService.cartItems().reduce((sum, item) => sum + item.quantity, 0)
-  );
+  title = "VeggieMart";
+  searchService = inject(SearchService); 
+
+  searchText = ""; 
+  updateSearch() {
+    this.searchService.updateSearchText(this.searchText);
+  }
 }

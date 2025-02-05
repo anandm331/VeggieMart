@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { CartService } from '../../Service/CartService/cart-service.service';
+import { CartService } from '../../Shared/Service/CartService/cart-service.service';
 
 @Component({
   selector: 'app-product-card',
